@@ -1,12 +1,12 @@
 const BasePage = require('./base.page');
-const LoginComponent = require("../components");
-
+const LoginComponent = require("./../components/login.component");
+const testData = require('./../consts/test.data.json')
 class LoginPage extends BasePage{
     constructor() {
-        super('/')
-        this.login = new LoginComponent()
+        super(testData.constructors.main)
+        this.elems = new LoginComponent()
     }
 
 }
 
-module.exports = LoginPage;
+module.exports = new LoginPage();

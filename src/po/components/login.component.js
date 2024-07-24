@@ -1,22 +1,23 @@
 const BaseComponent = require("./base.component") ;
-
+const testData = require('./../consts/test.data.json')
 class LoginComponent extends BaseComponent {
     constructor() {
-        super('.login-box');
+        super(testData.constructors.main);
     }
     input(name) {
         const selectors = {
-            username: '#user-name',
-            password: '#password'
+            username: testData.selectors.username,
+            password: testData.selectors.password
         }
-        return this.rootEl.$(selectors[name.toLowerCase()])
+        return $(selectors[name.toLowerCase()])
+
     }
     get loginBtn() {
-        return $('#login-button')
+        return $(testData.selectors.loginButton)
     }
 
     get error() {
-        return this.rootEl.$('h3')
+        return $(testData.selectors.errorMessage)
     }
 }
 

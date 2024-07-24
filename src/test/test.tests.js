@@ -1,31 +1,31 @@
 const { expect } = require('@wdio/globals')
-const {pages} = require('./../po')
-
+const LoginPage = require('./../po/pages/login.page')
+const testData = require('./../po/consts/test.data.json')
 describe('My Login application', () => {
 
     beforeEach(async () => {
-        await pages('login').open()
+        await LoginPage.open()
     })
 
     it('uc1. Test Login form with empty credentials', async () => {
-        await pages('login').login.input('username').clearValue()
-        await pages('login').login.input('password').clearValue()
-        await pages('login').login.loginBtn.click()
-        await expect( pages('login').login.error).toHaveTextContaining('Username is required')
+        await LoginPage.elems.input('username').clearValue()
+        await LoginPage.elems.input('password').clearValue()
+        await LoginPage.elems.loginBtn.click()
+        await expect( LoginPage.elems.error).toHaveTextContaining(testData.messages.usernameRequired)
     })
 
     it('uc2. Test Login form with credentials by passing Username:', async () => {
-        await pages('login').login.input('username').setValue('anyvalue')
-        await pages('login').login.input('password').clearValue()
-        await pages('login').login.loginBtn.click()
-        await expect( pages('login').login.error).toHaveTextContaining('Password is required')
+        await LoginPage.elems.input('username').setValue(testData.credentials.invalidUsername)
+        await LoginPage.elems.input('password').clearValue()
+        await LoginPage.elems.loginBtn.click()
+        await expect( LoginPage.elems.error).toHaveTextContaining(testData.messages.passwordRequired)
     })
 
     it('uc3. Test Login form with credentials by passing Username & Password:', async () => {
-        await pages('login').login.input('username').setValue('standard_user')
-        await pages('login').login.input('password').setValue('secret_sauce')
-        await pages('login').login.loginBtn.click()
-        await expect(browser).toHaveTitle('Swag Labs')
+        await LoginPage.elems.input('username').setValue(testData.credentials.validUsername)
+        await LoginPage.elems.input('password').setValue(testData.credentials.validPassword)
+        await LoginPage.elems.loginBtn.click()
+        await expect(browser).toHaveTitle(testData.pageTitles.successLogin)
     })
 })
 

@@ -1,0 +1,26 @@
+{
+  "constructors": {
+    "main": "/",
+    "login_component": ".login-box"
+  },
+  "selectors": {
+    "username": "#user-name",
+    "password": "#password",
+    "loginButton": "#login-button",
+    "errorMessage": "h3"
+  },
+  "credentials": {
+    "validUsername": "standard_user",
+    "validPassword": "secret_sauce",
+    "invalidUsername": "invalid_user",
+    "invalidPassword": "invalid_password"
+  },
+  "messages": {
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required",
+    "invalidCredentials": "Invalid username or password"
+  },
+  "pageTitles": {
+    "successLogin": "Swag Labs"
+  }
+}
